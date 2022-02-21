@@ -3,6 +3,7 @@ import {toggleForm} from './toggleForm.js';
 import {dropTimerBtn, formDate, formTimer, startTimerBtn, toggleButton} from "./selectors.js";
 import {dropTimerHandler, setTimerValue, timerHandler} from "./timer.js";
 
+
 formTimer.hidden = true;
 startTimerBtn.disabled = true;
 

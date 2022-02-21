@@ -1,4 +1,4 @@
-import {Duration} from 'https://moment.github.io/luxon/es6/luxon.min.js'
+import {Duration} from 'luxon'
 import {formTimer, inputTime, startTimerBtn, timerValueLink} from "./selectors.js";
 import {sfx} from "./soundConfig.js";
 
