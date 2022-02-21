@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js" integrity="sha512-6+YN/9o9BWrk6wSfGxQGpt3EUK6XeHi6yeHV+TYD2GR0Sj/cggRpXr1BrAQf0as6XslxomMUxXp2vIl+fv0QRA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script type="module" src="./js/main.js"></script>
+  <title>Document</title>
+</head>
+<body>
+  <button id="toggle_button">Set timer</button>
+  <form id="form_date_calc">
+    <h3>Калькулятор дат</h3>
+    <label>
+        <strong>Начальная дата:</strong>
+        <input type="date" name="startDate" />
+    </label>
+    <label>
+        <strong>Конечная дата:</strong>
+        <input type="date" name="endDate" />
+    </label>
+    <button type="submit">Расчитать промежуток</button>
+    <p id="date_calc__result"></p>
+  </form>
+  <form id="form_timer">
+      <h3>Таймер</h3>
+      <label>
+          Начальное значение таймера:
+          <input type="time" name="timerValue" id="input_time"/>
+      </label>
+      <button type="submit" id="start_timer">Start timer</button>
+      <button type="submit" id="drop_timer">Drop timer</button>
+      <p id="timer_value"></p>
+  </form>
+</body>
+</html>
