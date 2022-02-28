@@ -1,1 +1,11 @@
 .idea
+/node_modules/
+/dist/
+/build/
+/dateDiff/style/style.css
+/dateDiff/style/style.css.map
+/dateDiff/sfx/
+/dateDiff/howler-sfx-levelup.mp3
+/src/style.css
+/src/style.css.map
+/media/
