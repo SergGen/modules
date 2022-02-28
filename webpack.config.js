@@ -4,26 +4,33 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
+const ImageMinimizerPlugin = require("image-minimizer-webpack-plugin");
 
 module.exports = {
-    entry: resolve(__dirname, "dateDiff", "js", "index.js"),
+    entry: resolve(__dirname, "src", "index.js"),
     output: {
         filename: "main.[contenthash].js",
         path: resolve(__dirname, "build")
     },
     target: "web",
+    resolve: {
+        alias: {
+            '@media': resolve(__dirname, 'media')
+        }
+    },
     module: {
         rules: [
             {
-                test: /\.(mp3)$/i,
-                loader: 'file-loader',
-                options: {
-                    name: '[name].[ext]'
-                }
+                test: /\.(jpe?g|png|gif)$/i,
+                type: 'asset',
+            },
+            {
+                test: /\.(mp[3|4])$/i,
+                type: 'asset/resource',
             },
             {
                 test: /\.css$/i,
-                use: ["style-loader", "css-loader"],
+                use: [MiniCssExtractPlugin.loader, "css-loader"],
             },
             {
                 test: /\.s[ac]ss$/i,
@@ -53,11 +60,24 @@ module.exports = {
         new HtmlWebpackPlugin({
             title: "Dates and Timer",
             filename: "index.html",
-            template: resolve(__dirname, "dateDiff", "index.html")
+            template: resolve(__dirname, "src", "index.html")
         })
     ],
     optimization: {
         minimize: true,
-        minimizer: [new TerserPlugin(), new CssMinimizerPlugin()],
+        minimizer: [new TerserPlugin(), new CssMinimizerPlugin(),
+            new ImageMinimizerPlugin({
+                minimizer: {
+                    implementation: ImageMinimizerPlugin.imageminMinify,
+                    options: {
+                        plugins: [
+                            ["gifsicle", { interlaced: true }],
+                            ["imagemin-mozjpeg"],
+                            ["optipng", { optimizationLevel: 5 }]
+                        ],
+                    },
+                },
+            }),
+        ],
     },
 }
